@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FitGuía – Rutinas en casa con guía y seguimiento</title>
+
+    <meta name="description" content="Plataforma web de guía adaptativa y retroalimentación para rutinas de ejercicio en casa.">
+    <link rel="icon" href="../assets/icons/logo.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>x
+<body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header class="top">
+        <span class="brand"><img src="../assets/icons/logo.ico" alt="" width="24" height="24"> FitGuía</span> <span id="rol-h" class="tag" hidden></span>
+    </header>
+    <nav id="nav" aria-label="Navegación principal"></nav>
+    <main id="main" tabindex="-1">
+
+        <section id="landing" aria-labelledby="t-land">
+            <div class="hero">
+                <img src="../assets/icons/logo.ico" alt="Logo de FitGuía" width="64" height="64">
+                <h1 id="t-land">Entrena en casa con guía y seguimiento</h1>
+                <p class="lead">FitGuía adapta tu rutina al tiempo y al espacio que tienes, te ayuda a cuidar tu postura y te muestra tu progreso. Para quienes entrenan y para quienes los acompañan.</p>
+                <div class="cta">
+                    <button class="btn" type="button" data-ir="cliente">Probar como cliente</button>
+                    <button class="btn alt" type="button" data-ir="entrenador">Soy entrenador</button>
+                </div>
+            </div>
+
+            <h2>El problema</h2>
+            <div class="grid tres">
+                <div class="card"><b class="big">31 %</b><p>de los adultos no alcanza la actividad física recomendada (OMS, 2024).</p></div>
+                <div class="card"><b class="big">Dolor</b><p>lumbar y cervical son las molestias más frecuentes en el teletrabajo (Fadel et al., 2023).</p></div>
+                <div class="card"><b class="big">Abandono</b><p>muchas personas dejan las apps de fitness en pocas semanas (Zakrzewska et al., 2025).</p></div>
+            </div>
+
+            <h2>Cómo funciona</h2>
+            <ol class="pasos">
+                <li><b>Cuéntanos tu situación.</b> Elige tu objetivo, el tiempo y el espacio que tienes.</li>
+                <li><b>Entrena con guía.</b> Recibe una rutina adaptada y avisos para cuidar tu postura.</li>
+                <li><b>Mira tu avance.</b> Revisa tus minutos, tu meta semanal y tus sesiones.</li>
+            </ol>
+
+            <h2>Beneficios</h2>
+            <div class="grid dos">
+                <div class="card"><h3>Para clientes</h3>
+                    <ul><li>Rutinas cortas que caben en tu día</li><li>Funciona en espacios pequeños</li><li>Pausas activas para cuello y espalda</li><li>Progreso visible y fácil de entender</li></ul></div>
+                <div class="card"><h3>Para entrenadores</h3>
+                    <ul><li>Panel con alertas de tus clientes</li><li>Ficha con la evolución de cada uno</li><li>Mensajes directos para corregir a tiempo</li><li>Menos tiempo revisando videos</li></ul></div>
+            </div>
+
+            <h2>Solicita información</h2>
+            <form id="f-cont" class="card" novalidate>
+                <label for="c-nom">Nombre completo</label>
+                <input id="c-nom" autocomplete="name" aria-describedby="e-c-nom"><p id="e-c-nom" class="err"></p>
+                <label for="c-mail">Correo electrónico</label>
+                <input id="c-mail" type="email" autocomplete="email" aria-describedby="e-c-mail"><p id="e-c-mail" class="err"></p>
+                <label for="c-cel">Celular (9 dígitos)</label>
+                <input id="c-cel" inputmode="numeric" autocomplete="tel" aria-describedby="e-c-cel"><p id="e-c-cel" class="err"></p>
+                <label for="c-msj">¿Qué necesitas?</label>
+                <textarea id="c-msj" rows="3" aria-describedby="e-c-msj"></textarea><p id="e-c-msj" class="err"></p>
+                <button class="btn" type="submit">Enviar solicitud</button>
+                <p id="ok-cont" class="okmsg" role="status"></p>
+            </form>
+        </section>
+
+        <section id="inicio" aria-labelledby="t-inicio">
+            <p class="muted" id="saludo" role="status" aria-live="polite">Hola</p>
+            <h1 id="t-inicio">Tu rutina de hoy</h1>
+            <form id="f-pref" class="card grid" novalidate>
+                <label for="obj">Objetivo
+                    <select id="obj">
+                        <option value="postura">Corrección postural</option>
+                        <option value="musculo">Ganancia muscular</option>
+                        <option value="peso">Pérdida de peso</option>
+                        <option value="cond">Acondicionamiento</option>
+                    </select>
+                </label>
+                <label for="min">Tiempo disponible (min)
+                    <input id="min" type="number" min="5" max="60" value="20" required aria-describedby="e-pref">
+                </label>
+                <label for="m2">Espacio disponible
+                    <select id="m2">
+                        <option value="1">1 m²</option>
+                        <option value="2" selected>2 m²</option>
+                        <option value="4">4 m² o más</option>
+                    </select>
+                </label>
+                <button class="btn" type="submit">Ver rutinas sugeridas</button>
+                <p id="e-pref" class="err" role="alert"></p>
+            </form>
+
+            <h2>Rutinas sugeridas</h2>
+            <ul id="rutinas" class="list" aria-live="polite"></ul>
+
+            <button class="btn alt" id="b-gen" type="button">Generar mi rutina personalizada</button>
+            <ul id="pers" class="list" aria-live="polite"></ul>
+            <h2>Plan semanal</h2>
+            <ul id="plan" class="list"></ul>
+            <h2>Esta semana</h2>
+            <ul id="semana" class="chips" aria-label="Días de entrenamiento"></ul>
+
+            <div class="card">
+                <h2>Pausa activa</h2>
+                <p class="muted">5 min para cuello y espalda</p>
+                <p id="pausa" class="big" aria-live="polite">05:00</p>
+                <button class="btn" id="b-pausa" type="button">Iniciar pausa</button>
+            </div>
+        </section>
+
+        <section id="ejercicios" aria-labelledby="t-ej" hidden>
+            <h1 id="t-ej">Catálogo de ejercicios</h1>
+            <form id="f-cat" class="card grid" novalidate>
+                <label for="f-q">Buscar<input id="f-q" type="search" placeholder="Nombre del ejercicio"></label>
+                <label for="f-g">Grupo muscular<select id="f-g"><option value="">Todos</option></select></label>
+                <label for="f-n">Dificultad<select id="f-n"><option value="">Todas</option><option value="1">Principiante</option><option value="2">Intermedio</option><option value="3">Avanzado</option></select></label>
+                <label for="f-e">Equipamiento<select id="f-e"><option value="">Todo</option></select></label>
+            </form>
+            <p id="cat-n" class="muted" role="status"></p>
+            <ul id="cat" class="list"></ul>
+        </section>
+
+        <section id="perfil" aria-labelledby="t-per" hidden>
+            <h1 id="t-per">Mi perfil</h1>
+            <form id="f-perfil" class="card" novalidate>
+                <label for="p-nom">Nombre<input id="p-nom" autocomplete="name" aria-describedby="e-p-nom"></label>
+                <p id="e-p-nom" class="err"></p>
+                <label for="p-obj">Objetivo físico<select id="p-obj"><option value="postura">Corrección postural</option><option value="musculo">Ganancia muscular</option><option value="peso">Pérdida de peso</option><option value="cond">Acondicionamiento</option></select></label>
+                <label for="p-niv">Nivel de experiencia<select id="p-niv"><option value="1">Principiante</option><option value="2">Intermedio</option><option value="3">Avanzado</option></select></label>
+                <fieldset><legend>Días en los que puedo entrenar</legend><div id="p-dias" class="chips"></div></fieldset>
+                <button class="btn" type="submit">Guardar perfil</button>
+                <p id="ok-perfil" class="okmsg" role="status"></p>
+            </form>
+            <div class="card">
+                <h2>Mi entrenador</h2>
+                <p id="vinc-e" class="muted">Aún no estás vinculado a un entrenador.</p>
+                <label for="cod">Código de invitación<input id="cod" placeholder="FIT-0000" aria-describedby="e-cod"></label>
+                <p id="e-cod" class="err" role="alert"></p>
+                <button class="btn" id="b-cod" type="button">Vincular</button>
+                <h3>Comentarios con mi entrenador</h3>
+                <ul id="hilo-c" class="list"></ul>
+                <label for="resp">Responder<textarea id="resp" rows="2"></textarea></label>
+                <button class="btn" id="b-resp" type="button">Enviar respuesta</button>
+                <p id="ok-resp" class="okmsg" role="status"></p>
+            </div>
+            <div class="card">
+                <h2>Privacidad y datos</h2>
+                <p class="muted">Tus datos se guardan solo en este navegador. Puedes borrarlos cuando quieras.</p>
+                <button class="btn danger" id="b-del" type="button">Eliminar mis datos y mi cuenta</button>
+            </div>
+        </section>
+
+        <section id="entrenar" aria-labelledby="t-ent" hidden>
+            <h1 id="t-ent">Entrenamiento</h1>
+            <div id="sesion" class="card">
+                <p class="muted">Elige una rutina en Inicio para comenzar.</p>
+            </div>
+            <div id="resumen" class="card" hidden>
+                <span class="tag ok">Sesión completada</span>
+                <h2>Buen trabajo</h2>
+                <div class="grid m">
+                    <div class="card"><span class="muted">Tiempo total</span><b id="r-t" class="big"></b></div>
+                    <div class="card"><span class="muted">Precisión técnica</span><b id="r-p" class="big"></b></div>
+                    <div class="card"><span class="muted">Repeticiones válidas</span><b id="r-v" class="big"></b></div>
+                    <div class="card"><span class="muted">No válidas</span><b id="r-n" class="big"></b></div>
+                </div>
+                <fieldset>
+                    <legend>¿Qué tan intensa fue? (1 a 5)</legend>
+                    <div id="esf" class="chips" role="group" aria-label="Escala de intensidad del 1 al 5"></div>
+                </fieldset>
+                <label for="nota">Nota opcional
+                    <textarea id="nota" rows="2" placeholder="Describe cómo te sentiste o algún detalle de tu postura"></textarea>
+                </label>
+                <button class="btn" id="b-guardar" type="button">Guardar sesión</button>
+                <p id="ok-guardar" class="okmsg" role="status" aria-live="polite"></p>
+            </div>
+        </section>
+
+        <section id="progreso" aria-labelledby="t-prog" hidden>
+            <h1 id="t-prog">Tu progreso</h1>
+            <div class="card">
+                <h2>Minutos entrenados</h2>
+                <div id="barras" class="bars" role="img" aria-label="Minutos entrenados por día de la semana"></div>
+            </div>
+            <div class="card">
+                <h2 id="meta-t">Meta semanal</h2>
+                <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="7" aria-valuenow="0" id="meta-track" aria-label="Progreso de meta semanal">
+                    <div id="meta-b" class="fill"></div>
+                </div>
+                <p id="meta-p"></p>
+            </div>
+            <div class="card">
+                <span class="muted">Sesiones guardadas</span>
+                <b id="racha" class="big">0</b>
+            </div>
+            <div class="card">
+                <label for="meta-i">Meta semanal (sesiones por semana)<input id="meta-i" type="number" min="1" max="7" value="4" aria-describedby="e-meta"></label>
+                <p id="e-meta" class="err" role="alert"></p>
+                <button class="btn" id="b-meta" type="button">Guardar meta</button>
+                <p id="ok-meta" class="okmsg" role="status"></p>
+            </div>
+            <div class="card"><h2>Historial de sesiones</h2><ul id="hist" class="list"></ul></div>
+        </section>
+
+        <section id="panel" aria-labelledby="t-panel" hidden>
+            <h1 id="t-panel">Panel de monitoreo</h1>
+            <div class="grid m" id="metricas"></div>
+            <div class="card">
+                <h2>Alertas de clientes</h2>
+                <div class="scroll">
+                    <table>
+                        <caption class="sr">Clientes, última rutina, precisión y estado</caption>
+                        <thead><tr><th scope="col">Cliente</th><th scope="col">Última rutina</th><th scope="col">Precisión postural</th><th scope="col">Estado</th></tr></thead>
+                        <tbody id="tb-alertas"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="clientes" aria-labelledby="t-cli" hidden>
+            <h1 id="t-cli">Lista de clientes</h1>
+            <div class="card">
+                <h2>Invitar a un cliente</h2>
+                <p class="muted">Genera un código y compártelo. El cliente debe ingresarlo en su perfil para autorizar la vinculación.</p>
+                <button class="btn" id="b-inv" type="button">Generar código de invitación</button>
+                <p id="inv-c" class="big" role="status"></p>
+                <p id="inv-l" class="muted"></p>
+            </div>
+            <label for="buscar">Buscar cliente
+                <input id="buscar" type="search" placeholder="Buscar por nombre o rutina">
+            </label>
+            <div class="card">
+                <div class="scroll">
+                    <table>
+                        <caption class="sr">Clientes, última rutina, precisión y estado</caption>
+                        <thead><tr><th scope="col">Cliente</th><th scope="col">Última rutina</th><th scope="col">Precisión postural</th><th scope="col">Estado</th></tr></thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </div>
+                <p id="vacio" class="muted" hidden>No se encontraron clientes.</p>
+            </div>
+        </section>
+
+        <section id="acceso" aria-labelledby="t-acc" hidden>
+            <h1 id="t-acc">Bienvenido</h1>
+            <form id="f-login" class="card" novalidate>
+                <h2>Iniciar sesión</h2>
+                <label for="mail">Correo</label>
+                <input id="mail" type="email" placeholder="correo@ejemplo.com" autocomplete="email" aria-describedby="e-mail">
+                <p id="e-mail" class="err" role="alert"></p>
+                <label for="pass">Contraseña</label>
+                <input id="pass" type="password" autocomplete="current-password" aria-describedby="e-pass">
+                <p id="e-pass" class="err" role="alert"></p>
+                <button class="btn alt" type="button" id="ver-pass" aria-pressed="false">Mostrar contraseña</button>
+                <p class="muted">Cuentas de prueba (contraseña 123456): ana@fitguia.com (cliente) y luis@fitguia.com (entrenador).</p>
+                <button class="btn" type="submit">Iniciar sesión</button>
+                <p id="e-login" class="err" role="alert"></p>
+            </form>
+            <form id="f-reg" class="card" novalidate>
+                <h2>Crear cuenta</h2>
+                <label for="r-nom">Nombre</label><input id="r-nom" autocomplete="name" aria-describedby="e-r-nom"><p id="e-r-nom" class="err"></p>
+                <label for="r-mail">Correo</label><input id="r-mail" type="email" autocomplete="email" aria-describedby="e-r-mail"><p id="e-r-mail" class="err"></p>
+                <label for="r-pass">Contraseña (mínimo 6 caracteres)</label><input id="r-pass" type="password" autocomplete="new-password" aria-describedby="e-r-pass"><p id="e-r-pass" class="err"></p>
+                <fieldset><legend>Crear cuenta como</legend>
+                    <label><input type="radio" name="rrol" value="cliente" checked> Cliente</label>
+                    <label><input type="radio" name="rrol" value="entrenador"> Entrenador</label></fieldset>
+                <button class="btn" type="submit">Crear cuenta</button>
+            </form>
+        </section>
+    </main>
+    <footer class="foot">
+        <p><b>FitGuía</b> · Proyecto del curso HCI for UX Design (1ASI0784), UPC · Ciclo 2026-20</p>
+        <p>Equipo: Chavez Herrera, Peralta Vizcardo, Figueroa Figueroa, Ramos Ordóñez, Trujillo Gonzales y Melo Contreras.</p>
+    </footer>
+
+    <dialog id="dlg" aria-labelledby="d-t">
+        <h2 id="d-t"></h2>
+        <div id="d-b"></div>
+        <button class="btn alt" id="d-x" type="button">Cerrar</button>
+    </dialog>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
